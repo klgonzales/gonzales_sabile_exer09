@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * this program generates and prints all possible combinations of numbers from 1 to N.
+ * it uses a backtracking algorithm to generate the combinations.
+ */
+
 int main() {
     int N;
 
@@ -11,7 +16,7 @@ int main() {
     int option[N+2][N+2];
     int nopts[N+2];
 
-    // fill up
+    // fill up the option array with initial values
     for (int i=N; i>0; i--) { 
         for (int j=i; j>0; j--) { 
             option[N-i+1][j] = N-j+1;
@@ -21,11 +26,11 @@ int main() {
 
     while (move != 0) {
         
-        // print solution
+        // print the current combination
         for (int i=1; i<move+1; i++) printf("%d ", option[i][nopts[i]]);
         printf("\n");
 
-        // modify nopts
+        // modify nopts array to generate the next combination
         if (--nopts[move] < 1) move--;
         else {
             for (int i=move+1; i<move+1+nopts[move]-1; i++) {
